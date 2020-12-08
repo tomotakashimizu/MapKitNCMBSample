@@ -1,0 +1,33 @@
+PODS:
+  - NCMB (3.1.0)
+  - SVProgressHUD (2.2.5)
+  - SwiftDate (4.4.2)
+
+DEPENDENCIES:
+  - NCMB (from `https://github.com/NIFTYCloud-mbaas/ncmb_ios.git`, branch `develop`)
+  - SVProgressHUD
+  - SwiftDate (~> 4.4.0)
+
+SPEC REPOS:
+  trunk:
+    - SVProgressHUD
+    - SwiftDate
+
+EXTERNAL SOURCES:
+  NCMB:
+    :branch: develop
+    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
+
+CHECKOUT OPTIONS:
+  NCMB:
+    :commit: c9d038fb4ec82dcecedb4ce15c38b869cbebebf4
+    :git: https://github.com/NIFTYCloud-mbaas/ncmb_ios.git
+
+SPEC CHECKSUMS:
+  NCMB: c308972109137bf523ec1830bac16de6a31c25f4
+  SVProgressHUD: 1428aafac632c1f86f62aa4243ec12008d7a51d6
+  SwiftDate: 131cf2f09b390f0a07f0099e36005ffe2fbf4c7e
+
+PODFILE CHECKSUM: da58e6e075e9c691fdf57751007764a7f14dfa8e
+
+COCOAPODS: 1.9.1
