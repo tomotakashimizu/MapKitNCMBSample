@@ -46,6 +46,7 @@ class PostViewController: UIViewController {
                 SVProgressHUD.dismiss()
                 self.placeLatitude = nil
                 self.placeLongitude = nil
+                self.navigationController?.popViewController(animated: true)
                 self.tabBarController?.selectedIndex = 0
             }
         })
