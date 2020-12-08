@@ -27,7 +27,6 @@
 		D10CDBE5252C6C42005FDD63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBD9252C6C42005FDD63 /* User.swift */; };
 		D10CDBE6252C6C42005FDD63 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBDA252C6C42005FDD63 /* Post.swift */; };
 		D10CDBE7252C6C42005FDD63 /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */; };
-		D10CDBF2252C6D11005FDD63 /* BorderButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBF1252C6D11005FDD63 /* BorderButton.swift */; };
 		D10CDBF7252C6D24005FDD63 /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBF5252C6D24005FDD63 /* SignUpViewController.swift */; };
 		D10CDBF8252C6D24005FDD63 /* SignInViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBF6252C6D24005FDD63 /* SignInViewController.swift */; };
 		D10CDBFD252C6E05005FDD63 /* PostPlacePointViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBFC252C6E05005FDD63 /* PostPlacePointViewController.swift */; };
@@ -66,7 +65,6 @@
 		D10CDBD9252C6C42005FDD63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D10CDBDA252C6C42005FDD63 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
-		D10CDBF1252C6D11005FDD63 /* BorderButton.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = BorderButton.swift; sourceTree = "<group>"; };
 		D10CDBF5252C6D24005FDD63 /* SignUpViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		D10CDBF6252C6D24005FDD63 /* SignInViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SignInViewController.swift; sourceTree = "<group>"; };
 		D10CDBFC252C6E05005FDD63 /* PostPlacePointViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostPlacePointViewController.swift; sourceTree = "<group>"; };
@@ -164,7 +162,6 @@
 				D10CDBD9252C6C42005FDD63 /* User.swift */,
 				D10CDBDA252C6C42005FDD63 /* Post.swift */,
 				D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */,
-				D10CDBF1252C6D11005FDD63 /* BorderButton.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -354,7 +351,6 @@
 				D10CDBA3252C62D4005FDD63 /* SceneDelegate.swift in Sources */,
 				D10CDBE5252C6C42005FDD63 /* User.swift in Sources */,
 				D15585F3253B44670014B9CC /* DetailViewController.swift in Sources */,
-				D10CDBF2252C6D11005FDD63 /* BorderButton.swift in Sources */,
 				D10CDC01252C6E75005FDD63 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
