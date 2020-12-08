@@ -14,10 +14,8 @@
 		D10CDBA8252C62D4005FDD63 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBA6252C62D4005FDD63 /* Main.storyboard */; };
 		D10CDBAA252C62D5005FDD63 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBA9252C62D5005FDD63 /* Assets.xcassets */; };
 		D10CDBAD252C62D5005FDD63 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBAB252C62D5005FDD63 /* LaunchScreen.storyboard */; };
-		D10CDBC6252C6BA4005FDD63 /* tabbar-icon-search@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBBC252C6BA3005FDD63 /* tabbar-icon-search@2x.png */; };
 		D10CDBC9252C6BA4005FDD63 /* tabbar-icon-mypage@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBBF252C6BA3005FDD63 /* tabbar-icon-mypage@2x.png */; };
 		D10CDBCB252C6BA4005FDD63 /* tabbar-icon-home@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBC1252C6BA3005FDD63 /* tabbar-icon-home@2x.png */; };
-		D10CDBCE252C6BA4005FDD63 /* tabbar-icon-add@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = D10CDBC4252C6BA3005FDD63 /* tabbar-icon-add@2x.png */; };
 		D10CDBE5252C6C42005FDD63 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBD9252C6C42005FDD63 /* User.swift */; };
 		D10CDBE6252C6C42005FDD63 /* Post.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBDA252C6C42005FDD63 /* Post.swift */; };
 		D10CDBE7252C6C42005FDD63 /* SimpleAlert.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */; };
@@ -46,10 +44,8 @@
 		D10CDBA9252C62D5005FDD63 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		D10CDBAC252C62D5005FDD63 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		D10CDBAE252C62D5005FDD63 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		D10CDBBC252C6BA3005FDD63 /* tabbar-icon-search@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-icon-search@2x.png"; sourceTree = "<group>"; };
 		D10CDBBF252C6BA3005FDD63 /* tabbar-icon-mypage@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-icon-mypage@2x.png"; sourceTree = "<group>"; };
 		D10CDBC1252C6BA3005FDD63 /* tabbar-icon-home@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-icon-home@2x.png"; sourceTree = "<group>"; };
-		D10CDBC4252C6BA3005FDD63 /* tabbar-icon-add@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "tabbar-icon-add@2x.png"; sourceTree = "<group>"; };
 		D10CDBD9252C6C42005FDD63 /* User.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		D10CDBDA252C6C42005FDD63 /* Post.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Post.swift; sourceTree = "<group>"; };
 		D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SimpleAlert.swift; sourceTree = "<group>"; };
@@ -130,10 +126,8 @@
 		D10CDBBA252C6BA3005FDD63 /* Images */ = {
 			isa = PBXGroup;
 			children = (
-				D10CDBBC252C6BA3005FDD63 /* tabbar-icon-search@2x.png */,
 				D10CDBBF252C6BA3005FDD63 /* tabbar-icon-mypage@2x.png */,
 				D10CDBC1252C6BA3005FDD63 /* tabbar-icon-home@2x.png */,
-				D10CDBC4252C6BA3005FDD63 /* tabbar-icon-add@2x.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -257,9 +251,7 @@
 				D10CDBAA252C62D5005FDD63 /* Assets.xcassets in Resources */,
 				D10CDBA8252C62D4005FDD63 /* Main.storyboard in Resources */,
 				D10CDBCB252C6BA4005FDD63 /* tabbar-icon-home@2x.png in Resources */,
-				D10CDBCE252C6BA4005FDD63 /* tabbar-icon-add@2x.png in Resources */,
 				D15585EA253AF62A0014B9CC /* TimelineTableViewCell.xib in Resources */,
-				D10CDBC6252C6BA4005FDD63 /* tabbar-icon-search@2x.png in Resources */,
 				D10CDC04252C7A43005FDD63 /* SignIn.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
