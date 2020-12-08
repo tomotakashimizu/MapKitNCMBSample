@@ -316,7 +316,7 @@
         <scene sceneID="h2J-pa-Q9R">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="PjJ-4P-PyO" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="OnlyDeveloperPost" id="2mB-q2-3LD"/>
+                    <tabBarItem key="tabBarItem" title="OnlyDeveloperPost" image="plus" catalog="system" id="2mB-q2-3LD"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="4GN-d9-7em">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -493,7 +493,7 @@
         <scene sceneID="hhV-61-cfS">
             <objects>
                 <navigationController automaticallyAdjustsScrollViewInsets="NO" id="WB8-0U-iBw" sceneMemberID="viewController">
-                    <tabBarItem key="tabBarItem" title="Map" id="tN8-hG-kBS"/>
+                    <tabBarItem key="tabBarItem" title="Map" image="map" catalog="system" id="tN8-hG-kBS"/>
                     <toolbarItems/>
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="bFO-vh-qsq">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
@@ -510,6 +510,8 @@
         </scene>
     </scenes>
     <resources>
+        <image name="map" catalog="system" width="128" height="110"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
         <image name="tabbar-icon-home.png" width="37.5" height="37.5"/>
         <image name="tabbar-icon-mypage.png" width="37.5" height="37.5"/>
         <systemColor name="systemBackgroundColor">
