@@ -466,14 +466,19 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" fixedFrame="YES" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YNn-6j-b1s">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="YNn-6j-b1s">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
-                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor"/>
                             </tableView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="zXh-Z1-cdg"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <constraints>
+                            <constraint firstItem="YNn-6j-b1s" firstAttribute="leading" secondItem="zXh-Z1-cdg" secondAttribute="leading" id="AgV-n3-IJP"/>
+                            <constraint firstAttribute="bottom" secondItem="YNn-6j-b1s" secondAttribute="bottom" id="dw0-gw-dYA"/>
+                            <constraint firstItem="YNn-6j-b1s" firstAttribute="top" secondItem="T8A-gp-Vmd" secondAttribute="top" id="fDY-3q-JxI"/>
+                            <constraint firstItem="YNn-6j-b1s" firstAttribute="trailing" secondItem="zXh-Z1-cdg" secondAttribute="trailing" id="fYm-9I-5fF"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="FH3-Gs-Efj"/>
                     <connections>
