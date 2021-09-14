@@ -9,8 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PostPlacePointViewController: UIViewController, MKMapViewDelegate, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
-    
+class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
     
     var locationManager: CLLocationManager!
     var currentLatitude :Double!
@@ -26,7 +25,6 @@ class PostPlacePointViewController: UIViewController, MKMapViewDelegate, CLLocat
     var adressString = ""
     var annotationList = [MKPointAnnotation]()
     @IBOutlet var searchBar: UISearchBar!
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -153,39 +151,6 @@ class PostPlacePointViewController: UIViewController, MKMapViewDelegate, CLLocat
         postMapView.userTrackingMode = .follow
     }
     
-    // 地図の初期化
-    func initMap() {
-        // 縮尺を設定
-        var region: MKCoordinateRegion = postMapView.region
-        region.span.latitudeDelta = 0.02
-        region.span.longitudeDelta = 0.02
-        postMapView.setRegion(region,animated:true)
-        
-        // 現在位置表示の有効化
-        postMapView.showsUserLocation = true
-        // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
-        postMapView.userTrackingMode = .follow
-    }
-    
-    func setupScaleBar() {
-        // スケールバーの表示
-        let scale = MKScaleView(mapView: postMapView)
-        scale.frame.origin.x = 15
-        scale.frame.origin.y = 45
-        scale.legendAlignment = .leading
-        self.view.addSubview(scale)
-    }
-    
-    func setupCompass() {
-        // コンパスの表示
-        let compass = MKCompassButton(mapView: postMapView)
-        compass.compassVisibility = .adaptive
-        compass.frame = CGRect(x: 10, y: 150, width: 40, height: 40)
-        self.view.addSubview(compass)
-        // デフォルトのコンパスを非表示にする
-        postMapView.showsCompass = false
-    }
-    
     // 緯度・経度から住所(String型)へ変換
     func convert(lat: CLLocationDegrees, long: CLLocationDegrees) {
         let geocorder = CLGeocoder()
@@ -233,6 +198,52 @@ class PostPlacePointViewController: UIViewController, MKMapViewDelegate, CLLocat
         }
     }
     
+    @IBAction func toPost() {
+        if adressString == "" || latitude == nil || longitude == nil {
+            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
+        } else {
+            self.performSegue(withIdentifier: "toPost", sender: nil)
+        }
+    }
+    
+}
+
+// MARK:- MapView に関する処理
+extension PostPlacePointViewController: MKMapViewDelegate {
+    
+    // 地図の初期化
+    func initMap() {
+        // 縮尺を設定
+        var region: MKCoordinateRegion = postMapView.region
+        region.span.latitudeDelta = 0.02
+        region.span.longitudeDelta = 0.02
+        postMapView.setRegion(region,animated:true)
+        
+        // 現在位置表示の有効化
+        postMapView.showsUserLocation = true
+        // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
+        postMapView.userTrackingMode = .follow
+    }
+    
+    func setupScaleBar() {
+        // スケールバーの表示
+        let scale = MKScaleView(mapView: postMapView)
+        scale.frame.origin.x = 15
+        scale.frame.origin.y = 45
+        scale.legendAlignment = .leading
+        self.view.addSubview(scale)
+    }
+    
+    func setupCompass() {
+        // コンパスの表示
+        let compass = MKCompassButton(mapView: postMapView)
+        compass.compassVisibility = .adaptive
+        compass.frame = CGRect(x: 10, y: 150, width: 40, height: 40)
+        self.view.addSubview(compass)
+        // デフォルトのコンパスを非表示にする
+        postMapView.showsCompass = false
+    }
+    
     // 地図の種類を変更
     @IBAction func changeMaptype(_ sender: Any) {
         switch (sender as AnyObject).selectedSegmentIndex {
@@ -246,13 +257,4 @@ class PostPlacePointViewController: UIViewController, MKMapViewDelegate, CLLocat
             postMapView.mapType = .standard
         }
     }
-    
-    @IBAction func toPost() {
-        if adressString == "" || latitude == nil || longitude == nil {
-            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
-        } else {
-            self.performSegue(withIdentifier: "toPost", sender: nil)
-        }
-    }
-    
 }
