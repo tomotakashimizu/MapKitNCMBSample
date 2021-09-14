@@ -9,8 +9,6 @@ import UIKit
 
 class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
-    //var postId = ""
-    //var posts = [Post]()
     var selectedPost: Post!
     
     @IBOutlet var detailTimelineTableView: UITableView!

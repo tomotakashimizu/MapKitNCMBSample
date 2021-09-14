@@ -40,13 +40,6 @@ class SelectedPlacePointViewController: UIViewController, MKMapViewDelegate {
         pinView.pinTintColor = .blue
         pinView.canShowCallout = true
         
-        //let button = UIButton()
-        //button.frame = CGRect(x: 0,y: 0,width: 70 ,height: 35)
-        //button.setTitle("投稿を見る", for: .normal)
-        //button.backgroundColor = UIColor.blue
-        //button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        //pinView.rightCalloutAccessoryView = button
-        
         return pinView
     }
     
