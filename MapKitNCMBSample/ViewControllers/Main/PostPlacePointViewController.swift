@@ -105,14 +105,14 @@ extension PostPlacePointViewController: CLLocationManagerDelegate {
         let geocorder = CLGeocoder()
         let location = CLLocation(latitude: lat, longitude: long)
         geocorder.reverseGeocodeLocation(location) { (placeMark, error) in
-            if let placeMark = placeMark {
-                if let pm = placeMark.first {
-                    if pm.administrativeArea != nil && pm.locality != nil {
-                        self.adressString = pm.administrativeArea! + pm.locality!
-                    }else{
-                        self.adressString = pm.name!
-                    }
-                }
+            
+            guard let placeMark = placeMark else { return }
+            guard let pm = placeMark.first else { return }
+            
+            if pm.administrativeArea != nil && pm.locality != nil {
+                self.adressString = pm.administrativeArea! + pm.locality!
+            }else{
+                self.adressString = pm.name!
             }
         }
     }
