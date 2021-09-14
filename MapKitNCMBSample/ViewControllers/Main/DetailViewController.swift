@@ -7,17 +7,24 @@
 
 import UIKit
 
-class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class DetailViewController: UIViewController {
     
-    //var postId = ""
-    //var posts = [Post]()
     var selectedPost: Post!
-    
     @IBOutlet var detailTimelineTableView: UITableView!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        configureTableView()
+    }
+    
+}
+
+
+// MARK:- tableView に関する処理
+extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func configureTableView() {
         detailTimelineTableView.delegate = self
         detailTimelineTableView.dataSource = self
         
@@ -43,5 +50,4 @@ class DetailViewController: UIViewController, UITableViewDelegate, UITableViewDa
         
         return cell
     }
-    
 }
