@@ -113,6 +113,10 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
+}
+
+// MARK:- 引っ張って更新を行う処理
+extension ViewController {
     
     // 引っ張って更新を行うためにセットするための関数（たいていの場合viewDidLoadに書く）
     func setRefreshControl() {
@@ -132,6 +136,4 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
             refreshControl.endRefreshing()
         }
     }
-    
 }
-
