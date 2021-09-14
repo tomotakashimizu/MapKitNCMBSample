@@ -43,29 +43,19 @@ class UserPageViewController: UIViewController {
     
     func loadPosts() {
         let query = NCMBQuery(className: "Place")
-        //query?.includeKey("user")
-        //query?.whereKey("user", equalTo: NCMBUser.current())
         query?.findObjectsInBackground({ (result, error) in
             if error != nil {
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
             } else {
                 self.posts = [Post]()
-                
                 for postObject in result as! [NCMBObject] {
-                    // ユーザー情報をUserクラスにセット
-                    //let user = postObject.object(forKey: "user") as! NCMBUser
-                    //let userModel = User(objectId: user.objectId, userName: user.userName)
-                    //userModel.displayName = user.object(forKey: "displayName") as? String
                     
                     let geoPoint = postObject.object(forKey: "geoPoint") as! NCMBGeoPoint
-                    
                     // 2つのデータ(投稿情報と誰が投稿したか?)を合わせてPostクラスにセット
                     let post = Post(objectId: postObject.objectId, createDate: postObject.createDate, geoPoint: geoPoint)
-                    
                     // 配列に加える
                     self.posts.append(post)
                 }
-                
                 // post数を表示
                 self.postCountLabel.text = String(self.posts.count)
             }
