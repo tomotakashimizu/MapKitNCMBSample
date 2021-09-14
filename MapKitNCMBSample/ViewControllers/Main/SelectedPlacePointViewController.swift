@@ -9,7 +9,7 @@ import UIKit
 import NCMB
 import MapKit
 
-class SelectedPlacePointViewController: UIViewController, MKMapViewDelegate {
+class SelectedPlacePointViewController: UIViewController {
     
     var selectedGeoPoint = NCMBGeoPoint()
     @IBOutlet var selectedMapView: MKMapView!
@@ -18,7 +18,7 @@ class SelectedPlacePointViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        selectedMapView.delegate = self
+        configureMapView()
         setSearchBar()
     }
     
@@ -32,32 +32,9 @@ class SelectedPlacePointViewController: UIViewController, MKMapViewDelegate {
         self.selectedMapView.region = MKCoordinateRegion(center: placePoint, latitudinalMeters: 3000.0, longitudinalMeters: 3000.0)
     }
     
-    // ピンを立てる関数
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        let pinView = MKPinAnnotationView()
-        pinView.animatesDrop = false
-        pinView.isDraggable = false
-        pinView.pinTintColor = .blue
-        pinView.canShowCallout = true
-        
-        return pinView
-    }
-    
-    @IBAction func changeMaptype(_ sender: Any) {
-        switch (sender as AnyObject).selectedSegmentIndex {
-        case 0:
-            selectedMapView.mapType = .standard
-        case 1:
-            selectedMapView.mapType = .satellite
-        case 2:
-            selectedMapView.mapType = .hybrid
-        default:
-            selectedMapView.mapType = .standard
-        }
-    }
-    
 }
 
+// MARK:- SearchBar に関する処理
 extension SelectedPlacePointViewController: UISearchBarDelegate {
     
     func setSearchBar() {
@@ -105,6 +82,38 @@ extension SelectedPlacePointViewController: UISearchBarDelegate {
                     }
                 }
             })
+        }
+    }
+}
+
+// MARK:-  MapView に関する処理
+extension SelectedPlacePointViewController: MKMapViewDelegate {
+    
+    func configureMapView() {
+        selectedMapView.delegate = self
+    }
+    
+    // ピンを立てる関数
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        let pinView = MKPinAnnotationView()
+        pinView.animatesDrop = false
+        pinView.isDraggable = false
+        pinView.pinTintColor = .blue
+        pinView.canShowCallout = true
+        
+        return pinView
+    }
+    
+    @IBAction func changeMaptype(_ sender: Any) {
+        switch (sender as AnyObject).selectedSegmentIndex {
+        case 0:
+            selectedMapView.mapType = .standard
+        case 1:
+            selectedMapView.mapType = .satellite
+        case 2:
+            selectedMapView.mapType = .hybrid
+        default:
+            selectedMapView.mapType = .standard
         }
     }
 }
