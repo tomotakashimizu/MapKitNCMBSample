@@ -10,7 +10,7 @@ import NCMB
 import MapKit
 import SVProgressHUD
 
-class AllPostedPlacePointViewController: UIViewController, MKMapViewDelegate {
+class AllPostedPlacePointViewController: UIViewController {
     
     var posts = [Post]()
     var annotationList = [MKPointAnnotation]()
@@ -22,7 +22,7 @@ class AllPostedPlacePointViewController: UIViewController, MKMapViewDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        mapView.delegate = self
+        configureMapView()
         setSearchBar()
     }
     
@@ -30,44 +30,11 @@ class AllPostedPlacePointViewController: UIViewController, MKMapViewDelegate {
         loadPlacePoint()
     }
     
-    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
-        let pinView = MKPinAnnotationView()
-        pinView.animatesDrop = false
-        pinView.isDraggable = false
-        pinView.pinTintColor = .blue
-        pinView.canShowCallout = true
-        
-        let button = UIButton()
-        button.frame = CGRect(x: 0,y: 0,width: 70 ,height: 35)
-        button.setTitle("投稿を見る", for: .normal)
-        button.backgroundColor = UIColor.blue
-        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        pinView.rightCalloutAccessoryView = button
-        
-        //mapView.addAnnotations(annotationList)
-        
-        return pinView
-    }
-    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail" {
             let detailVC = segue.destination as! DetailViewController
             detailVC.selectedPost = posts[0]
         }
-    }
-    
-    // 吹き出しをタップした時に呼ばれる関数
-    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
-        //投稿表示
-        self.performSegue(withIdentifier: "toDetail", sender: nil)
-    }
-    
-    // ピンをタップした時に呼ばれる関数
-    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let coordinate = view.annotation?.coordinate
-        selectedGeoPoint = NCMBGeoPoint(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
-        loadSelectedPlacePoint(selectedGeoPoint: selectedGeoPoint)
     }
     
     func loadPlacePoint() {
@@ -157,6 +124,48 @@ class AllPostedPlacePointViewController: UIViewController, MKMapViewDelegate {
                 
             }
         })
+    }
+}
+
+
+// MARK:-  MapView に関する処理
+extension AllPostedPlacePointViewController: MKMapViewDelegate {
+    
+    func configureMapView() {
+        mapView.delegate = self
+    }
+    
+    func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
+        
+        let pinView = MKPinAnnotationView()
+        pinView.animatesDrop = false
+        pinView.isDraggable = false
+        pinView.pinTintColor = .blue
+        pinView.canShowCallout = true
+        
+        let button = UIButton()
+        button.frame = CGRect(x: 0,y: 0,width: 70 ,height: 35)
+        button.setTitle("投稿を見る", for: .normal)
+        button.backgroundColor = UIColor.blue
+        button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
+        pinView.rightCalloutAccessoryView = button
+        
+        //mapView.addAnnotations(annotationList)
+        
+        return pinView
+    }
+    
+    // 吹き出しをタップした時に呼ばれる関数
+    func mapView(_ mapView: MKMapView, annotationView view: MKAnnotationView, calloutAccessoryControlTapped control: UIControl) {
+        //投稿表示
+        self.performSegue(withIdentifier: "toDetail", sender: nil)
+    }
+    
+    // ピンをタップした時に呼ばれる関数
+    func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
+        let coordinate = view.annotation?.coordinate
+        selectedGeoPoint = NCMBGeoPoint(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
+        loadSelectedPlacePoint(selectedGeoPoint: selectedGeoPoint)
     }
     
     @IBAction func changeMaptype(_ sender: Any) {
