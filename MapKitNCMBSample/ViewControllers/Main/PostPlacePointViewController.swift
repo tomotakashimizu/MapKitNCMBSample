@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate, UISearchBarDelegate {
+class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
     
     var locationManager: CLLocationManager!
     var currentLatitude :Double!
@@ -47,67 +47,6 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate,
             postVC.placeLatitude = latitude
             postVC.placeLongitude = longitude
             //postVC.adressString = adressString
-        }
-    }
-    
-    func setSearchBar() {
-        searchBar.delegate = self
-        searchBar.placeholder = "都市名で検索"
-        searchBar.autocapitalizationType = UITextAutocapitalizationType.none
-    }
-    
-    // searcBarをクリック時
-    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
-        searchBar.setShowsCancelButton(true, animated: true)
-        return true
-    }
-    
-    // キャンセルボタンを押した時の処理
-    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
-        searchPlaces(searchText: nil)
-        searchBar.text = ""
-        searchBar.showsCancelButton = false
-        searchBar.resignFirstResponder()
-    }
-    
-    // searchBarで検索時(Enter押した時)呼ばれる関数
-    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
-        searchPlaces(searchText: searchBar.text)
-    }
-    
-    func searchPlaces(searchText: String?) {
-        
-        if let searchKey = searchText {
-            
-            let geocoder = CLGeocoder()
-            
-            geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
-                
-                if let unwrapPlacemarks = placemarks {
-                    if let firstPlacemark = unwrapPlacemarks.first {
-                        if let location = firstPlacemark.location {
-                            
-                            // annotationの初期化
-                            self.postMapView.removeAnnotations(self.annotationList)
-                            
-                            let targetCoordinate = location.coordinate
-                            print(targetCoordinate)
-                            self.latitude = targetCoordinate.latitude
-                            self.longitude = targetCoordinate.longitude
-                            
-                            let pin = MKPointAnnotation()
-                            pin.coordinate = targetCoordinate
-                            pin.title = searchKey
-                            self.postMapView.addAnnotation(pin)
-                            self.annotationList.append(pin)
-                            self.postMapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
-                            
-                            print(searchKey)
-                            self.adressString = searchKey
-                        }
-                    }
-                }
-            })
         }
     }
     
@@ -206,6 +145,71 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+}
+
+// MARK:- SearchBar に関する処理
+extension PostPlacePointViewController: UISearchBarDelegate {
+    
+    func setSearchBar() {
+        searchBar.delegate = self
+        searchBar.placeholder = "都市名で検索"
+        searchBar.autocapitalizationType = UITextAutocapitalizationType.none
+    }
+    
+    // searcBarをクリック時
+    func searchBarShouldBeginEditing(_ searchBar: UISearchBar) -> Bool {
+        searchBar.setShowsCancelButton(true, animated: true)
+        return true
+    }
+    
+    // キャンセルボタンを押した時の処理
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        searchPlaces(searchText: nil)
+        searchBar.text = ""
+        searchBar.showsCancelButton = false
+        searchBar.resignFirstResponder()
+    }
+    
+    // searchBarで検索時(Enter押した時)呼ばれる関数
+    func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
+        searchPlaces(searchText: searchBar.text)
+    }
+    
+    func searchPlaces(searchText: String?) {
+        
+        if let searchKey = searchText {
+            
+            let geocoder = CLGeocoder()
+            
+            geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
+                
+                if let unwrapPlacemarks = placemarks {
+                    if let firstPlacemark = unwrapPlacemarks.first {
+                        if let location = firstPlacemark.location {
+                            
+                            // annotationの初期化
+                            self.postMapView.removeAnnotations(self.annotationList)
+                            
+                            let targetCoordinate = location.coordinate
+                            print(targetCoordinate)
+                            self.latitude = targetCoordinate.latitude
+                            self.longitude = targetCoordinate.longitude
+                            
+                            let pin = MKPointAnnotation()
+                            pin.coordinate = targetCoordinate
+                            pin.title = searchKey
+                            self.postMapView.addAnnotation(pin)
+                            self.annotationList.append(pin)
+                            self.postMapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+                            
+                            print(searchKey)
+                            self.adressString = searchKey
+                        }
+                    }
+                }
+            })
+        }
+    }
 }
 
 // MARK:- MapView に関する処理
