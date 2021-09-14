@@ -173,6 +173,8 @@ class AllPostedPlacePointViewController: UIViewController, MKMapViewDelegate {
     }
 }
 
+
+// MARK:- SearchBar に関する処理
 extension AllPostedPlacePointViewController: UISearchBarDelegate {
     
     func setSearchBar() {
@@ -202,24 +204,18 @@ extension AllPostedPlacePointViewController: UISearchBarDelegate {
     
     func searchPlaces(searchText: String?) {
         
-        if let searchKey = searchText {
+        guard let searchKey = searchText else { return }
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
             
-            let geocoder = CLGeocoder()
+            guard let unwrapPlacemarks = placemarks else { return }
+            guard let firstPlacemark = unwrapPlacemarks.first else { return }
+            guard let location = firstPlacemark.location else { return }
             
-            geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
-                
-                if let unwrapPlacemarks = placemarks {
-                    if let firstPlacemark = unwrapPlacemarks.first {
-                        if let location = firstPlacemark.location {
-                            
-                            let targetCoordinate = location.coordinate
-                            print(targetCoordinate)
-                            
-                            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
-                        }
-                    }
-                }
-            })
-        }
+            let targetCoordinate = location.coordinate
+            print(targetCoordinate)
+            self.mapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+        })
     }
 }
