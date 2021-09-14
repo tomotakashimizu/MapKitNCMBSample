@@ -64,25 +64,19 @@ extension SelectedPlacePointViewController: UISearchBarDelegate {
     
     func searchPlaces(searchText: String?) {
         
-        if let searchKey = searchText {
+        guard let searchKey = searchText else { return }
+        
+        let geocoder = CLGeocoder()
+        geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
             
-            let geocoder = CLGeocoder()
+            guard let unwrapPlacemarks = placemarks else { return }
+            guard let firstPlacemark = unwrapPlacemarks.first else { return }
+            guard let location = firstPlacemark.location else { return }
             
-            geocoder.geocodeAddressString(searchKey, completionHandler: { (placemarks, error) in
-                
-                if let unwrapPlacemarks = placemarks {
-                    if let firstPlacemark = unwrapPlacemarks.first {
-                        if let location = firstPlacemark.location {
-                            
-                            let targetCoordinate = location.coordinate
-                            print(targetCoordinate)
-                            
-                            self.selectedMapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
-                        }
-                    }
-                }
-            })
-        }
+            let targetCoordinate = location.coordinate
+            print(targetCoordinate)
+            self.selectedMapView.region = MKCoordinateRegion(center: targetCoordinate, latitudinalMeters: 500.0, longitudinalMeters: 500.0)
+        })
     }
 }
 
