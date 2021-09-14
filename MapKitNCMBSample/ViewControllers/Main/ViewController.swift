@@ -9,7 +9,7 @@ import UIKit
 import NCMB
 import SVProgressHUD
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class ViewController: UIViewController {
     
     var posts = [Post]()
     var selectdIndex: Int!
@@ -19,14 +19,7 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        timelineTableView.delegate = self
-        timelineTableView.dataSource = self
-        
-        // 不要な線を消す
-        timelineTableView.tableFooterView = UIView()
-        
-        let nib = UINib(nibName: "TimelineTableViewCell", bundle: Bundle.main)
-        timelineTableView.register(nib, forCellReuseIdentifier: "Cell")
+        configureTableView()
         
         // 引っ張って更新
         setRefreshControl()
@@ -34,23 +27,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
     
     override func viewWillAppear(_ animated: Bool) {
         loadTimeline()
-    }
-    
-    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return posts.count
-    }
-    
-    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TimelineTableViewCell
-        cell.delegate = self
-        cell.tag = indexPath.row
-        
-        cell.selectionStyle = .none
-        
-        cell.latitudeLabel.text = "緯度：\(posts[indexPath.row].geoPoint.latitude)"
-        cell.longitudeLabel.text = "経度：\(posts[indexPath.row].geoPoint.longitude)"
-        
-        return cell
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -108,6 +84,38 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
+}
+
+// MARK:- tableView に関する処理
+extension ViewController: UITableViewDataSource, UITableViewDelegate {
+    
+    func configureTableView() {
+        timelineTableView.delegate = self
+        timelineTableView.dataSource = self
+        
+        // 不要な線を消す
+        timelineTableView.tableFooterView = UIView()
+        
+        let nib = UINib(nibName: "TimelineTableViewCell", bundle: Bundle.main)
+        timelineTableView.register(nib, forCellReuseIdentifier: "Cell")
+    }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return posts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        let cell = tableView.dequeueReusableCell(withIdentifier: "Cell", for: indexPath) as! TimelineTableViewCell
+        cell.delegate = self
+        cell.tag = indexPath.row
+        
+        cell.selectionStyle = .none
+        
+        cell.latitudeLabel.text = "緯度：\(posts[indexPath.row].geoPoint.latitude)"
+        cell.longitudeLabel.text = "経度：\(posts[indexPath.row].geoPoint.longitude)"
+        
+        return cell
+    }
 }
 
 // MARK:- TimelineTableViewCellDelegate に関する処理
