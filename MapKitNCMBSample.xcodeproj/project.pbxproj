@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2A5AA2C64A612BE6042E4F28 /* Pods_MapKitNCMBSample.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 10580783FD8DD34E99C142E3 /* Pods_MapKitNCMBSample.framework */; };
-		D10ABB7026EE6D91000C0004 /* APIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10ABB6F26EE6D91000C0004 /* APIInfo.swift */; };
+		D10ABB7226F107A6000C0004 /* APIInfo.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10ABB7126F107A6000C0004 /* APIInfo.swift */; };
 		D10CDBA1252C62D4005FDD63 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBA0252C62D4005FDD63 /* AppDelegate.swift */; };
 		D10CDBA3252C62D4005FDD63 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBA2252C62D4005FDD63 /* SceneDelegate.swift */; };
 		D10CDBA5252C62D4005FDD63 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = D10CDBA4252C62D4005FDD63 /* ViewController.swift */; };
@@ -37,7 +37,7 @@
 		10580783FD8DD34E99C142E3 /* Pods_MapKitNCMBSample.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MapKitNCMBSample.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		2B3CA47B66A0512D98A0C2E1 /* Pods-MapKitNCMBSample.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapKitNCMBSample.debug.xcconfig"; path = "Target Support Files/Pods-MapKitNCMBSample/Pods-MapKitNCMBSample.debug.xcconfig"; sourceTree = "<group>"; };
 		57CF731EE50770383B6909B1 /* Pods-MapKitNCMBSample.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MapKitNCMBSample.release.xcconfig"; path = "Target Support Files/Pods-MapKitNCMBSample/Pods-MapKitNCMBSample.release.xcconfig"; sourceTree = "<group>"; };
-		D10ABB6F26EE6D91000C0004 /* APIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInfo.swift; sourceTree = "<group>"; };
+		D10ABB7126F107A6000C0004 /* APIInfo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = APIInfo.swift; sourceTree = "<group>"; };
 		D10CDB9D252C62D4005FDD63 /* MapKitNCMBSample.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MapKitNCMBSample.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D10CDBA0252C62D4005FDD63 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		D10CDBA2252C62D4005FDD63 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -140,7 +140,7 @@
 				D10CDBD9252C6C42005FDD63 /* User.swift */,
 				D10CDBDA252C6C42005FDD63 /* Post.swift */,
 				D10CDBDB252C6C42005FDD63 /* SimpleAlert.swift */,
-				D10ABB6F26EE6D91000C0004 /* APIInfo.swift */,
+				D10ABB7126F107A6000C0004 /* APIInfo.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -322,7 +322,7 @@
 				D10CDBA3252C62D4005FDD63 /* SceneDelegate.swift in Sources */,
 				D10CDBE5252C6C42005FDD63 /* User.swift in Sources */,
 				D15585F3253B44670014B9CC /* DetailViewController.swift in Sources */,
-				D10ABB7026EE6D91000C0004 /* APIInfo.swift in Sources */,
+				D10ABB7226F107A6000C0004 /* APIInfo.swift in Sources */,
 				D10CDC01252C6E75005FDD63 /* PostViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
