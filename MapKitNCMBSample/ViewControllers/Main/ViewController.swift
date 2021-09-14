@@ -9,7 +9,7 @@ import UIKit
 import NCMB
 import SVProgressHUD
 
-class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, TimelineTableViewCellDelegate {
+class ViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
     
     var posts = [Post]()
     var selectdIndex: Int!
@@ -51,11 +51,6 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         cell.longitudeLabel.text = "経度：\(posts[indexPath.row].geoPoint.longitude)"
         
         return cell
-    }
-    
-    func didTapPlacePointButton(tableViewCell: UITableViewCell) {
-        selectdIndex = tableViewCell.tag
-        self.performSegue(withIdentifier: "toPlacePoint", sender: nil)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -113,6 +108,15 @@ class ViewController: UIViewController, UITableViewDataSource, UITableViewDelega
         })
     }
     
+}
+
+// MARK:- TimelineTableViewCellDelegate に関する処理
+extension ViewController: TimelineTableViewCellDelegate {
+    
+    func didTapPlacePointButton(tableViewCell: UITableViewCell) {
+        selectdIndex = tableViewCell.tag
+        self.performSegue(withIdentifier: "toPlacePoint", sender: nil)
+    }
 }
 
 // MARK:- 引っ張って更新を行う処理
