@@ -9,7 +9,7 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate, UIGestureRecognizerDelegate {
+class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate {
     
     var locationManager: CLLocationManager!
     var currentLatitude :Double!
@@ -106,6 +106,20 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate,
         }
     }
     
+    @IBAction func toPost() {
+        if adressString == "" || latitude == nil || longitude == nil {
+            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
+        } else {
+            self.performSegue(withIdentifier: "toPost", sender: nil)
+        }
+    }
+    
+}
+
+
+// MARK:- UIGestureRecognizerDelegate に関する処理
+extension PostPlacePointViewController: UIGestureRecognizerDelegate {
+    
     // UILongPressGestureRecognizerのdelegate：ロングタップを検出する
     @IBAction func mapViewDidLongPress(_ sender: UILongPressGestureRecognizer) {
         // ロングタップ開始
@@ -135,16 +149,8 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate,
             longitude = pressCordinate.longitude
         }
     }
-    
-    @IBAction func toPost() {
-        if adressString == "" || latitude == nil || longitude == nil {
-            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
-        } else {
-            self.performSegue(withIdentifier: "toPost", sender: nil)
-        }
-    }
-    
 }
+
 
 // MARK:- SearchBar に関する処理
 extension PostPlacePointViewController: UISearchBarDelegate {
@@ -205,6 +211,7 @@ extension PostPlacePointViewController: UISearchBarDelegate {
         })
     }
 }
+
 
 // MARK:- MapView に関する処理
 extension PostPlacePointViewController: MKMapViewDelegate {
