@@ -9,20 +9,18 @@ import UIKit
 import MapKit
 import CoreLocation
 
-class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate {
+class PostPlacePointViewController: UIViewController {
     
     var locationManager: CLLocationManager!
     var currentLatitude :Double!
     var currentLongitude :Double!
-    
     var latitude: Double!
     var longitude: Double!
+    var adressString = ""
+    var annotationList = [MKPointAnnotation]()
     
     @IBOutlet var postMapView: MKMapView!
     @IBOutlet var longPressGestureRecognizer: UILongPressGestureRecognizer!
-    
-    var adressString = ""
-    var annotationList = [MKPointAnnotation]()
     @IBOutlet var searchBar: UISearchBar!
     
     override func viewDidLoad() {
@@ -33,7 +31,6 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate 
         
         // 地図の初期化
         initMap()
-        
         setupScaleBar()
         setupCompass()
         
@@ -48,6 +45,20 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate 
             //postVC.adressString = adressString
         }
     }
+    
+    @IBAction func toPost() {
+        if adressString == "" || latitude == nil || longitude == nil {
+            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
+        } else {
+            self.performSegue(withIdentifier: "toPost", sender: nil)
+        }
+    }
+    
+}
+
+
+// MARK:- CLLocationManagerDelegate に関する処理
+extension PostPlacePointViewController: CLLocationManagerDelegate {
     
     // locationManagerの設定
     func setupLocationManager() {
@@ -105,15 +116,6 @@ class PostPlacePointViewController: UIViewController, CLLocationManagerDelegate 
             }
         }
     }
-    
-    @IBAction func toPost() {
-        if adressString == "" || latitude == nil || longitude == nil {
-            SimpleAlert.showAlert(viewController: self, title: "確認", message: "まだ位置情報が定められていません。", buttonTitle: "OK")
-        } else {
-            self.performSegue(withIdentifier: "toPost", sender: nil)
-        }
-    }
-    
 }
 
 
