@@ -19,9 +19,11 @@ class UserPageViewController: UIViewController {
     }
     
     override func viewWillAppear(_ animated: Bool) {
-        
         loadPosts()
-        
+        loadUserInfo()
+    }
+    
+    func loadUserInfo() {
         // NCMBUser.current()がnilでなかったら、userを定義
         if let user = NCMBUser.current() {
             self.navigationItem.title = user.userName
