@@ -13,10 +13,8 @@ class PostViewController: UIViewController {
     
     var placeLatitude: Double!
     var placeLongitude: Double!
-    
     @IBOutlet var placeLatitudeLabel: UILabel!
     @IBOutlet var placeLongitudeLabel: UILabel!
-    
     @IBOutlet var postButton: UIBarButtonItem!
     
     override func viewDidLoad() {
