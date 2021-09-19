@@ -34,7 +34,7 @@ class AllPostedPlacePointViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail" {
             let detailVC = segue.destination as! DetailViewController
-            detailVC.selectedPost = posts["\(self.selectedCoordinate)"]![0]
+            detailVC.selectedPosts = posts["\(self.selectedCoordinate)"]!
             print(self.selectedCoordinate)
         }
     }
@@ -118,8 +118,8 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
         pinView.canShowCallout = true
         
         let button = UIButton()
-        button.frame = CGRect(x: 0,y: 0,width: 70 ,height: 35)
-        button.setTitle("投稿を見る", for: .normal)
+        button.frame = CGRect(x: 0,y: 0,width: 120 ,height: 35)
+        button.setTitle("この地点の投稿を見る", for: .normal)
         button.backgroundColor = UIColor.blue
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         pinView.rightCalloutAccessoryView = button

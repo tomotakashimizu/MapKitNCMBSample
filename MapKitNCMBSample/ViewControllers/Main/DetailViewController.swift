@@ -9,7 +9,7 @@ import UIKit
 
 class DetailViewController: UIViewController {
     
-    var selectedPost: Post!
+    var selectedPosts = [Post]()
     @IBOutlet var detailTimelineTableView: UITableView!
     
     override func viewDidLoad() {
@@ -36,7 +36,7 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return 1
+        return selectedPosts.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -45,8 +45,8 @@ extension DetailViewController: UITableViewDelegate, UITableViewDataSource {
         cell.selectionStyle = .none
         cell.toPlacePointButton.isHidden = true
         
-        cell.latitudeLabel.text = "緯度：\(selectedPost.geoPoint.latitude)"
-        cell.longitudeLabel.text = "経度：\(selectedPost.geoPoint.longitude)"
+        cell.latitudeLabel.text = "緯度：\(selectedPosts[indexPath.row].geoPoint.latitude)"
+        cell.longitudeLabel.text = "経度：\(selectedPosts[indexPath.row].geoPoint.longitude)"
         
         return cell
     }
