@@ -12,7 +12,7 @@ import SVProgressHUD
 
 class AllPostedPlacePointViewController: UIViewController {
     
-    // 緯度軽度のStringをkey,[Post]をvalueにした辞書型の配列を定義
+    // 緯度経度のStringをkey,[Post]をvalueにした辞書型の配列を定義
     var posts = [String: [Post]]()
     var annotationList = [MKPointAnnotation]()
     var selectedCoordinate = CLLocationCoordinate2D()
@@ -78,7 +78,8 @@ class AllPostedPlacePointViewController: UIViewController {
                     let placePoint = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude)
                     
                     pointAnnotation.coordinate = placePoint
-                    pointAnnotation.title = "緯度：\(geoPoint.latitude)"
+                    pointAnnotation.title = "緯度経度"
+                    pointAnnotation.subtitle = "緯度：\(placePoint.latitude), 経度：\(placePoint.longitude)"
                     self.mapView.addAnnotation(pointAnnotation)
                     self.mapView.region = MKCoordinateRegion(center: placePoint, latitudinalMeters: 3000.0, longitudinalMeters: 3000.0)
                     
