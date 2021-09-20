@@ -54,6 +54,17 @@ class PostPlacePointViewController: UIViewController {
         }
     }
     
+    @IBAction func toCurrentLocation() {
+        // 現在位置の取得
+        let location = self.locationManager.location
+        currentLatitude = location?.coordinate.latitude
+        currentLongitude = location?.coordinate.longitude
+        print("latitude: \(currentLatitude!)\nlongitude: \(currentLongitude!)")
+
+        // 現在位置が更新される度に地図の中心位置を変更する（アニメーション）
+        postMapView.userTrackingMode = .follow
+    }
+    
 }
 
 
