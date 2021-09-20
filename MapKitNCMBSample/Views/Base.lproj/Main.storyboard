@@ -230,7 +230,6 @@
                     <connections>
                         <outlet property="placeLatitudeLabel" destination="HRs-Jy-asX" id="40W-T4-XFv"/>
                         <outlet property="placeLongitudeLabel" destination="pRM-4A-JTn" id="0gL-Ot-QNM"/>
-                        <outlet property="postButton" destination="OdS-n3-f3K" id="zma-WX-RRQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXe-QX-ryn" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -273,6 +272,17 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tTQ-0h-stS" customClass="MaterialDesignButton" customModule="MapKitNCMBSample" customModuleProvider="target">
+                                <rect key="frame" x="331" y="694" width="63" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89576582825222484" green="1" blue="0.24361074328429322" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="現在地">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="toCurrentLocation" destination="XmB-Mj-JOm" eventType="touchUpInside" id="qeu-0F-9Qb"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="gDf-m5-HeI"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -310,7 +320,7 @@
                     </connections>
                 </pongPressGestureRecognizer>
             </objects>
-            <point key="canvasLocation" x="2422" y="-165"/>
+            <point key="canvasLocation" x="2421.739130434783" y="-165.40178571428569"/>
         </scene>
         <!--OnlyDeveloperPost-->
         <scene sceneID="h2J-pa-Q9R">
@@ -367,6 +377,18 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfP-Fh-Fz9" customClass="MaterialDesignButton" customModule="MapKitNCMBSample" customModuleProvider="target">
+                                <rect key="frame" x="331" y="694" width="63" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89576582829999996" green="1" blue="0.24361074329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="現在地">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="toCurrentLocation" destination="XmB-Mj-JOm" eventType="touchUpInside" id="o8h-v0-uCv"/>
+                                    <action selector="toCurrentLocation" destination="gYb-sk-cK3" eventType="touchUpInside" id="umn-nD-cXQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OQF-xg-Zdh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
@@ -430,6 +452,18 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ClN-0g-nLI" customClass="MaterialDesignButton" customModule="MapKitNCMBSample" customModuleProvider="target">
+                                <rect key="frame" x="331" y="694" width="63" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89576582829999996" green="1" blue="0.24361074329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="現在地">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="toCurrentLocation" destination="XmB-Mj-JOm" eventType="touchUpInside" id="e19-DO-0vg"/>
+                                    <action selector="toCurrentLocation" destination="RBP-XX-yEL" eventType="touchUpInside" id="pqK-B7-bRZ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="CBx-uK-bNT"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>

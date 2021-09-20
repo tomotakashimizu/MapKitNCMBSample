@@ -12,8 +12,6 @@ import CoreLocation
 class PostPlacePointViewController: UIViewController {
     
     var locationManager: CLLocationManager!
-    var currentLatitude :Double!
-    var currentLongitude :Double!
     var latitude: Double!
     var longitude: Double!
     var adressString = ""
@@ -54,6 +52,13 @@ class PostPlacePointViewController: UIViewController {
         }
     }
     
+    @IBAction func toCurrentLocation() {
+        // 現在地に移動
+        postMapView.setCenter(postMapView.userLocation.coordinate, animated: true)
+        print("latitude: \(postMapView.userLocation.coordinate.latitude)")
+        print("longitude: \(postMapView.userLocation.coordinate.longitude)")
+    }
+    
 }
 
 
@@ -86,18 +91,9 @@ extension PostPlacePointViewController: CLLocationManagerDelegate {
     
     // 現在の位置情報を取得・更新するたびに呼ばれるデリゲートメソッド
     func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        
-        // 現在位置の取得
-        let location = locations.first
-        // 緯度の取得
-        currentLatitude = location?.coordinate.latitude
-        // 経度の取得
-        currentLongitude = location?.coordinate.longitude
-        
-        print("latitude: \(currentLatitude!)\nlongitude: \(currentLongitude!)")
-        
         // 現在位置が更新される度に地図の中心位置を変更する（アニメーション）
-        postMapView.userTrackingMode = .follow
+        // ユーザが向いている方向も表示
+        postMapView.userTrackingMode = .followWithHeading
     }
     
     // 緯度・経度から住所(String型)へ変換
@@ -229,7 +225,7 @@ extension PostPlacePointViewController: MKMapViewDelegate {
         // 現在位置表示の有効化
         postMapView.showsUserLocation = true
         // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
-        postMapView.userTrackingMode = .follow
+        postMapView.userTrackingMode = .followWithHeading
     }
     
     func setupScaleBar() {

@@ -16,6 +16,7 @@ class AllPostedPlacePointViewController: UIViewController {
     var posts = [String: [Post]]()
     var annotationList = [MKPointAnnotation]()
     var selectedCoordinate = CLLocationCoordinate2D()
+    var locationManager: CLLocationManager!
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var searchBar: UISearchBar!
@@ -25,6 +26,8 @@ class AllPostedPlacePointViewController: UIViewController {
         
         configureMapView()
         setSearchBar()
+        // locationManagerの設定
+        setupLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -81,7 +84,6 @@ class AllPostedPlacePointViewController: UIViewController {
                     pointAnnotation.title = "緯度経度"
                     pointAnnotation.subtitle = "緯度：\(placePoint.latitude), 経度：\(placePoint.longitude)"
                     self.mapView.addAnnotation(pointAnnotation)
-                    self.mapView.region = MKCoordinateRegion(center: placePoint, latitudinalMeters: 3000.0, longitudinalMeters: 3000.0)
                     
                     // 2つのデータ(投稿情報と誰が投稿したか?)を合わせてPostクラスにセット
                     let post = Post(objectId: postObject.objectId, createDate: postObject.createDate, geoPoint: geoPoint)
@@ -99,6 +101,13 @@ class AllPostedPlacePointViewController: UIViewController {
             }
         })
     }
+    
+    @IBAction func toCurrentLocation() {
+        // 現在地に移動
+        mapView.setCenter(mapView.userLocation.coordinate, animated: true)
+        print("latitude: \(mapView.userLocation.coordinate.latitude)")
+        print("longitude: \(mapView.userLocation.coordinate.longitude)")
+    }
 }
 
 
@@ -107,10 +116,24 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
     
     func configureMapView() {
         mapView.delegate = self
+        
+        // 現在位置表示の有効化
+        mapView.showsUserLocation = true
+        // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
+        mapView.userTrackingMode = .followWithHeading
+        
+        let centerCoordinate = CLLocationCoordinate2D(latitude: 35.7020691, longitude: 139.7753269)
+        let initialSpan = MKCoordinateSpan(latitudeDelta: 10.0, longitudeDelta: 10.0)
+        let initialRegion = MKCoordinateRegion(center: centerCoordinate, span: initialSpan)
+        self.mapView.setRegion(initialRegion, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
-        
+        // annotation がユーザの現在地の場合
+        if (annotation is MKUserLocation) {
+            // デフォルト
+            return nil
+        }
         let pinView = MKPinAnnotationView()
         pinView.animatesDrop = false
         pinView.isDraggable = false
@@ -122,9 +145,8 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
         button.setTitle("この地点の投稿を見る", for: .normal)
         button.backgroundColor = UIColor.blue
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
-        pinView.rightCalloutAccessoryView = button
         
-        //mapView.addAnnotations(annotationList)
+        pinView.rightCalloutAccessoryView = button
         
         return pinView
     }
@@ -153,6 +175,36 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
             mapView.mapType = .standard
         }
     }
+}
+
+
+// MARK:- CLLocationManagerDelegate に関する処理
+extension AllPostedPlacePointViewController: CLLocationManagerDelegate {
+    
+    // locationManagerの設定
+    func setupLocationManager() {
+        // locationManagerオブジェクトの初期化
+        locationManager = CLLocationManager()
+        
+        // locationManagerオブジェクトが初期化に成功している場合のみ許可をリクエスト
+        guard let locationManager = locationManager else { return }
+        
+        // ユーザに対して、位置情報を取得する許可をリクエスト
+        locationManager.requestWhenInUseAuthorization()
+        
+        // ユーザから「アプリ使用中の位置情報取得」の許可が得られた場合のみ、マネージャの設定を行う
+        let status = CLLocationManager.authorizationStatus()
+        if status == .authorizedWhenInUse {
+            
+            // ViewControllerクラスが管理マネージャのデリゲート先になるように設定
+            locationManager.delegate = self
+            // メートル単位で設定
+            locationManager.distanceFilter = 10
+            // 位置情報の取得を開始
+            locationManager.startUpdatingLocation()
+        }
+    }
+    
 }
 
 
