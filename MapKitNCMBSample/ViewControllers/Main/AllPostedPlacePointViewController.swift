@@ -12,9 +12,10 @@ import SVProgressHUD
 
 class AllPostedPlacePointViewController: UIViewController {
     
-    var posts = [Post]()
+    // 緯度経度のStringをkey,[Post]をvalueにした辞書型の配列を定義
+    var posts = [String: [Post]]()
     var annotationList = [MKPointAnnotation]()
-    var selectedGeoPoint = NCMBGeoPoint()
+    var selectedCoordinate = CLLocationCoordinate2D()
     
     @IBOutlet var mapView: MKMapView!
     @IBOutlet var searchBar: UISearchBar!
@@ -33,7 +34,8 @@ class AllPostedPlacePointViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetail" {
             let detailVC = segue.destination as! DetailViewController
-            detailVC.selectedPost = posts[0]
+            detailVC.selectedPosts = posts["\(self.selectedCoordinate)"]!
+            print(self.selectedCoordinate)
         }
     }
     
@@ -64,7 +66,7 @@ class AllPostedPlacePointViewController: UIViewController {
                 SVProgressHUD.showError(withStatus: error!.localizedDescription)
             } else {
                 // 投稿を格納しておく配列を初期化(これをしないとreload時にappendで二重に追加されてしまう)
-                self.posts = [Post]()
+                self.posts = [String: [Post]]()
                 self.mapView.removeAnnotations(self.mapView.annotations)
                 
                 for postObject in result as! [NCMBObject] {
@@ -76,50 +78,22 @@ class AllPostedPlacePointViewController: UIViewController {
                     let placePoint = CLLocationCoordinate2DMake(geoPoint.latitude, geoPoint.longitude)
                     
                     pointAnnotation.coordinate = placePoint
-                    pointAnnotation.title = "緯度：\(geoPoint.latitude)"
+                    pointAnnotation.title = "緯度経度"
+                    pointAnnotation.subtitle = "緯度：\(placePoint.latitude), 経度：\(placePoint.longitude)"
                     self.mapView.addAnnotation(pointAnnotation)
                     self.mapView.region = MKCoordinateRegion(center: placePoint, latitudinalMeters: 3000.0, longitudinalMeters: 3000.0)
                     
                     // 2つのデータ(投稿情報と誰が投稿したか?)を合わせてPostクラスにセット
                     let post = Post(objectId: postObject.objectId, createDate: postObject.createDate, geoPoint: geoPoint)
                     
-                    // 配列に加える
-                    self.posts.append(post)
-                }
-                
-            }
-        })
-    }
-    
-    func loadSelectedPlacePoint(selectedGeoPoint: NCMBGeoPoint?) {
-        
-        let query = NCMBQuery(className: "Place")
-        
-        // 降順(新しいものがタイムラインの上に出てくるように)
-        query?.order(byDescending: "createDate")
-        
-        if let geoPoint = selectedGeoPoint {
-            query?.whereKey("geoPoint", equalTo: geoPoint)
-        }
-        
-        // オブジェクトの取得
-        query?.findObjectsInBackground({ (result, error) in
-            if error != nil {
-                SVProgressHUD.showError(withStatus: error!.localizedDescription)
-            } else {
-                // 投稿を格納しておく配列を初期化(これをしないとreload時にappendで二重に追加されてしまう)
-                self.posts = [Post]()
-                
-                for postObject in result as! [NCMBObject] {
+                    if self.posts["\(placePoint)"] != nil {
+                        // 配列に加える
+                        self.posts["\(placePoint)"]!.append(post)
+                    } else {
+                        self.posts["\(placePoint)"] = [post]
+                    }
                     
-                    // 投稿の情報を取得
-                    let geoPoint = postObject.object(forKey: "geoPoint") as! NCMBGeoPoint
-                    
-                    // 2つのデータ(投稿情報と誰が投稿したか?)を合わせてPostクラスにセット
-                    let post = Post(objectId: postObject.objectId, createDate: postObject.createDate, geoPoint: geoPoint)
-                    
-                    // 配列に加える
-                    self.posts.append(post)
+                    print(placePoint)
                 }
                 
             }
@@ -144,8 +118,8 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
         pinView.canShowCallout = true
         
         let button = UIButton()
-        button.frame = CGRect(x: 0,y: 0,width: 70 ,height: 35)
-        button.setTitle("投稿を見る", for: .normal)
+        button.frame = CGRect(x: 0,y: 0,width: 120 ,height: 35)
+        button.setTitle("この地点の投稿を見る", for: .normal)
         button.backgroundColor = UIColor.blue
         button.titleLabel?.font = UIFont.boldSystemFont(ofSize: 12)
         pinView.rightCalloutAccessoryView = button
@@ -163,9 +137,8 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
     
     // ピンをタップした時に呼ばれる関数
     func mapView(_ mapView: MKMapView, didSelect view: MKAnnotationView) {
-        let coordinate = view.annotation?.coordinate
-        selectedGeoPoint = NCMBGeoPoint(latitude: coordinate!.latitude, longitude: coordinate!.longitude)
-        loadSelectedPlacePoint(selectedGeoPoint: selectedGeoPoint)
+        self.selectedCoordinate = view.annotation!.coordinate
+        print(self.selectedCoordinate)
     }
     
     @IBAction func changeMaptype(_ sender: Any) {
