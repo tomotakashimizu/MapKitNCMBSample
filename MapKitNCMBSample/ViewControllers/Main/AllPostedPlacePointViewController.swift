@@ -84,7 +84,6 @@ class AllPostedPlacePointViewController: UIViewController {
                     pointAnnotation.title = "緯度経度"
                     pointAnnotation.subtitle = "緯度：\(placePoint.latitude), 経度：\(placePoint.longitude)"
                     self.mapView.addAnnotation(pointAnnotation)
-                    self.mapView.region = MKCoordinateRegion(center: placePoint, latitudinalMeters: 3000.0, longitudinalMeters: 3000.0)
                     
                     // 2つのデータ(投稿情報と誰が投稿したか?)を合わせてPostクラスにセット
                     let post = Post(objectId: postObject.objectId, createDate: postObject.createDate, geoPoint: geoPoint)
@@ -122,6 +121,11 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
         mapView.showsUserLocation = true
         // 現在位置設定（デバイスの動きとしてこの時の一回だけ中心位置が現在位置で更新される）
         mapView.userTrackingMode = .followWithHeading
+        
+        let centerCoordinate = CLLocationCoordinate2D(latitude: 35.7020691, longitude: 139.7753269)
+        let initialSpan = MKCoordinateSpan(latitudeDelta: 10.0, longitudeDelta: 10.0)
+        let initialRegion = MKCoordinateRegion(center: centerCoordinate, span: initialSpan)
+        self.mapView.setRegion(initialRegion, animated: true)
     }
     
     func mapView(_ mapView: MKMapView, viewFor annotation: MKAnnotation) -> MKAnnotationView? {
