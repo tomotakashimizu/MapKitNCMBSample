@@ -104,7 +104,8 @@ extension PostPlacePointViewController: CLLocationManagerDelegate {
         print("latitude: \(currentLatitude!)\nlongitude: \(currentLongitude!)")
         
         // 現在位置が更新される度に地図の中心位置を変更する（アニメーション）
-        postMapView.userTrackingMode = .follow
+        // ユーザが向いている方向も表示
+        postMapView.userTrackingMode = .followWithHeading
     }
     
     // 緯度・経度から住所(String型)へ変換
