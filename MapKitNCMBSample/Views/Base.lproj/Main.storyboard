@@ -230,7 +230,6 @@
                     <connections>
                         <outlet property="placeLatitudeLabel" destination="HRs-Jy-asX" id="40W-T4-XFv"/>
                         <outlet property="placeLongitudeLabel" destination="pRM-4A-JTn" id="0gL-Ot-QNM"/>
-                        <outlet property="postButton" destination="OdS-n3-f3K" id="zma-WX-RRQ"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="AXe-QX-ryn" userLabel="First Responder" sceneMemberID="firstResponder"/>
