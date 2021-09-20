@@ -26,6 +26,8 @@ class AllPostedPlacePointViewController: UIViewController {
         
         configureMapView()
         setSearchBar()
+        // locationManagerの設定
+        setupLocationManager()
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -197,13 +199,6 @@ extension AllPostedPlacePointViewController: CLLocationManagerDelegate {
             // 位置情報の取得を開始
             locationManager.startUpdatingLocation()
         }
-    }
-    
-    // 現在の位置情報を取得・更新するたびに呼ばれるデリゲートメソッド
-    func locationManager(_ manager: CLLocationManager, didUpdateLocations locations: [CLLocation]) {
-        // 現在位置が更新される度に地図の中心位置を変更する（アニメーション）
-        // ユーザが向いている方向も表示
-        mapView.userTrackingMode = .followWithHeading
     }
     
 }

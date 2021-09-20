@@ -377,6 +377,18 @@
                                 </constraints>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="zfP-Fh-Fz9" customClass="MaterialDesignButton" customModule="MapKitNCMBSample" customModuleProvider="target">
+                                <rect key="frame" x="331" y="694" width="63" height="55"/>
+                                <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                <color key="backgroundColor" red="0.89576582829999996" green="1" blue="0.24361074329999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <state key="normal" title="現在地">
+                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <connections>
+                                    <action selector="toCurrentLocation" destination="XmB-Mj-JOm" eventType="touchUpInside" id="o8h-v0-uCv"/>
+                                    <action selector="toCurrentLocation" destination="gYb-sk-cK3" eventType="touchUpInside" id="umn-nD-cXQ"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="OQF-xg-Zdh"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor"/>
