@@ -140,7 +140,7 @@ extension AllPostedPlacePointViewController: MKMapViewDelegate {
         pinView.pinTintColor = .blue
         pinView.canShowCallout = true
         
-        let button = UIButton()
+        let button = MaterialDesignButton()
         button.frame = CGRect(x: 0,y: 0,width: 120 ,height: 35)
         button.setTitle("この地点の投稿を見る", for: .normal)
         button.backgroundColor = UIColor.blue
